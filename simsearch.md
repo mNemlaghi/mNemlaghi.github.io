@@ -31,9 +31,10 @@ L'ensemble \\(\theta\\) de paramètres peut être appris via de l'apprentissage 
 
 Nous proposons ici de comparer les 3 types d'espace de représentation.
 
-### Les espaces de représentation sparse
 
-Une méthode sparse : le scoring est effectué à l'aide d'un espace de représentation _sparse_. Concrètement, nous proposons un ranking via les fréquences et les occurrences des mots contenus dans la requête et les descriptifs. L'espace de projection _d_ est équivalent à la cardinalité _V_ du vocabulaire (d'un ordre de grandeur se situant entre 10 000 et 1 000 000). Dans la maquette, nous avons choisi [TF IDF](https://fr.wikipedia.org/wiki/TF-IDF) avec prise en compte des bigrammes et filtrage des mots dont la fréquence est inférieure à 3.
+### Les méthodes sparse
+
+Une méthode sparse consiste à scorer à l'aide d'un espace de représentation _sparse_. Concrètement, nous proposons un ranking via les fréquences et les occurrences des mots contenus dans la requête et les descriptifs. L'espace de projection _d_ est équivalent à la cardinalité _V_ du vocabulaire (d'un ordre de grandeur se situant entre 10 000 et 1 000 000). Dans la maquette, nous avons choisi [TF IDF](https://fr.wikipedia.org/wiki/TF-IDF) avec prise en compte des bigrammes et filtrage des mots dont la fréquence est inférieure à 3. Au sein des méthodes d'extraction sparse, une foultitude d'autres possibilités que le TF IDF existe. En l'occurrence, Elastic utilise par défaut [BM25](https://www.elastic.co/fr/blog/practical-bm25-part-2-the-bm25-algorithm-and-its-variables)
 
 ### Les méthodes denses
 
@@ -113,7 +114,6 @@ $$ \theta^* = \arg\min_{\theta}  \sum_{i=1}^{M}  \mathcal{l}_{\theta}^{C}(q_i, t
 
 L'indexation consiste à relier une séquence éligible à la recherche en un vecteur requêtable par suite.
 
-Au sein des méthodes d'extraction sparse, une foultitude d'autres possibilités que le TF IDF existe. En l'occurrence, Elastic utilise par défaut [BM25](https://www.elastic.co/fr/blog/practical-bm25-part-2-the-bm25-algorithm-and-its-variables)
 Evoquons un instant les méthodes d'indexation et/ou de requêtage. En effet, si, dans notre cas, les index (ce qui va effectivement relier un document à sa représentation) créés sont de taille relativement faible, dans la pratique, une opération comparant une requête utilisateur à des millions, voire des millards d'entités se trouve être un challenge technique d'envergure. Le logiciel [ElasticSearch](https://www.elastic.co/fr/elasticsearch/) est une réussite en ce qui concerne la scalabilité. 
 
 
