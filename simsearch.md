@@ -14,30 +14,30 @@ Les modèles de recommandation basés sur le contenu textuel se basent sur des m
 
 ### Espaces de représentation
 
-L'espace de représentation sert à calculer un score de similarité entre la requête et chacun des contenus. Le choix d'un tel espace de représentation est donc crucial en ce qui concerne la qualité de la recommandation subséquente. Formellement, si l'on a une suite de documents \\(( t_1, ...t_N)\\) issus d'un ensemble de documents que l'on souhaite comparer à une requête $q$ introduite par un utilisateur.
+L'espace de représentation sert à calculer un score de similarité entre la requête et chacun des contenus. Le choix d'un tel espace de représentation est donc crucial en ce qui concerne la qualité de la recommandation subséquente. Formellement, si l'on a une suite de documents \\(( t_1, ...t_N)\\) issus d'un ensemble de documents que l'on souhaite comparer à une requête \\(q\\) introduite par un utilisateur.
 
-Le but du ranking est d'ordonner $N$ scores $s_i$, calculés via la démarche suivante:
+Le but du ranking est d'ordonner $N$ scores \\(s_i\\), calculés via la démarche suivante:
 
- * les documents et la requête sont projetés dans un espace euclidien, i.e. une fonction $e_{\theta}$ qui projette les textes dans un espace hilbertien $\mathbf{R}^d$, où $d$ est la dimension de l'espace et $\theta$ un ensemble de paramètres caractérisant la projection $e$ :
+ * les documents et la requête sont projetés dans un espace euclidien, i.e. une fonction \\( e_{\theta}\\) qui projette les textes dans un espace hilbertien $\mathbf{R}^d$, où $d$ est la dimension de l'espace et $\theta$ un ensemble de paramètres caractérisant la projection $e$ :
 
- * Munis de cette projection $e$, nous pouvons calculer les scores suivants et d'un opérateur $<., .>$ :
+ * Munis de cette projection \\(e\\), nous pouvons calculer les scores suivants et d'un opérateur \\(<., .>\\) :
 
 $$ <.,.> : \mathbf{R}^d \times \mathbf{R}^d \rightarrow \mathbf{R} $$
 $$ \forall i \in [[1,N]], s_i = <e_{\theta}(t_i), e_{\theta}(q)> $$
 
-* L'opérateur $<.,.>$  peut être un opérateur comme le produit scalaire, la similarité cosine, etc. 
+* L'opérateur \\(<.,.>\\)  peut être un opérateur comme le produit scalaire, la similarité cosine, etc. 
 
 L'ensemble $\theta$ de paramètres peut être appris via de l'apprentissage supervisé
 
-Nous proposons ici de comparer 3 types d'espace de représentation.
+Nous proposons ici de comparer les 3 types d'espace de représentation.
 
 ### Les espaces de représentation sparse
 
-Une méthode sparse : le scoring est effectué à l'aide d'un espace de représentation _sparse_. Concrètement, nous proposons un ranking via les fréquences et les occurrences des mots contenus dans la requête et les descriptifs. L'espace de projection $d$ est équivalent à la cardinalité $V$ du vocabulaire (d'un ordre de grandeur se situant entre 10 000 et 1 000 000). Dans la maquette, nous avons choisi [TF IDF](https://fr.wikipedia.org/wiki/TF-IDF) avec prise en compte des bigrammes et filtrage des mots dont la fréquence est inférieure à 3.
+Une méthode sparse : le scoring est effectué à l'aide d'un espace de représentation _sparse_. Concrètement, nous proposons un ranking via les fréquences et les occurrences des mots contenus dans la requête et les descriptifs. L'espace de projection _d_ est équivalent à la cardinalité _V_ du vocabulaire (d'un ordre de grandeur se situant entre 10 000 et 1 000 000). Dans la maquette, nous avons choisi [TF IDF](https://fr.wikipedia.org/wiki/TF-IDF) avec prise en compte des bigrammes et filtrage des mots dont la fréquence est inférieure à 3.
 
 ### Les méthodes denses
 
-Ici, l'espace de représentation est obtenu pour effectuer des opérations sur des aspects sémantiques (liés au sens des mots), plutôt que fréquentiels (liés aux occurrences strictes des mots). L'espace de représentation est ici appelé un embedding, car il représente une séquence dans un espace de dimension $d$ assez réduite pour pouvoir efficacement effectuer des opérations algébriques : $d << V$, où $V est le vocabulaire du corpus étudié.
+Ici, l'espace de représentation est obtenu pour effectuer des opérations sur des aspects sémantiques (liés au sens des mots), plutôt que fréquentiels (liés aux occurrences strictes des mots). L'espace de représentation est ici appelé un embedding, car il représente une séquence dans un espace de dimension $d$ assez réduite pour pouvoir efficacement effectuer des opérations algébriques : \\(d << V\\), où \\(V\\) est le vocabulaire du corpus étudié.
 
 #### Les embeddings _context free_
 
@@ -62,38 +62,38 @@ Similairement, si l'espace de représentation est important, la manière de calc
 
 Si nous ne sommes pas satisfaits des espaces pré-entraînés, nous pouvons les affiner en ajustant tout ou partie de leur jeu de paramètres $\theta$ par un mécanisme d'apprentissage supervisé.
 
-Pour ce faire, nous avons classiquemetn besoin d'un jeu d'exemples annotés ainsi que d'une fonction de coût. Celle-ci nous permettra de minimiser l'erreur liée à la construction de notre espace de projection. La littérature nous fournit entre autres deux possibilités, impliquant quelques ajustements quant à la donnée d'entraînement. Supposons que l'on dispose de M examples de requêtes $q_i$, pour $i \in [[1, M]]$ avec les résultats de documents, positifs et négatifs. 
+Pour ce faire, nous avons classiquemetn besoin d'un jeu d'exemples annotés ainsi que d'une fonction de coût. Celle-ci nous permettra de minimiser l'erreur liée à la construction de notre espace de projection. La littérature nous fournit entre autres deux possibilités, impliquant quelques ajustements quant à la donnée d'entraînement. Supposons que l'on dispose de M examples de requêtes  \\(q_i\\), pour \\(i \in [[1, M]]\\) avec les résultats de documents, positifs et négatifs. 
 
 #### Les _triplet loss_
 
 Les triplets permettent de changer l'espace de représentation pour rapprocher les éléments similaires et éloigner les éléments dissemblables. La contrepartie est que chaque exemple doit être accompagné de deux exemples, l'un positif et l'autre négatif.
  
-Une requête $q_i$ est alors qualifiée d'_anchor_ (ancre) , $t_{p}^i$ un texte correspondant à une réponse positive et $t_{n}^i$ une réponse négative. La fonction de coût - à minimiser en fonction des paramètres s'écrit alors :
+Une requête \\(q_i\\) est alors qualifiée d'_anchor_ (ancre) , \\(t_{p}^i\\) un texte correspondant à une réponse positive et \\(t_{n}^i\\) une réponse négative. La fonction de coût - à minimiser en fonction des paramètres s'écrit alors :
 
 $$ \mathcal{l}_{\theta}^{T}(q_i, t_{p}^i, t_{n}^i) = max(\left\lVert e_{\theta}(q_i) -  e_{\theta}(t_{p}^i) \right\lVert^2 - \left\lVert  e_{\theta}(q_i) - e_{\theta}(t_{n}^i)  \right\lVert^2, \epsilon)  $$
 
-Le but de l'apprentissage est de trouver le jeu $\theta^*$ de paramètres satisfaisant : 
+Le but de l'apprentissage est de trouver le jeu \\(\theta^*\\) de paramètres satisfaisant : 
 
 $$ \theta^* = \arg\min_{\theta}  \sum_{i=1}^{M}  \mathcal{l}_{\theta}^{T}(q_i, t_{p}^i, t_{n}^i) $$
 
-$\left\lVert.\right\lVert$ est une norme euclidienne, et $\epsilon$ est qualifié de _marge_.
+\\(\left\lVert.\right\lVert \\) est une norme euclidienne, et \\(\epsilon\\) est qualifié de _marge_.
 
 Pour chaque example, en fonction de la valeur retournée, nous distinguons trois types de triplets : 
 
-* Easy triplets : ce sont des examples conduisant à $\mathcal{l}=0$. Ils ne permettent pas un apprentissage adéquat
+* Easy triplets : ce sont des examples conduisant à \\(\mathcal{l}=0\\). Ils ne permettent pas un apprentissage adéquat
 * Hard triplets : ce sont des exemples "contradictoires", dans la mesure où la distance de la requête à l'exemple négatif est inférieur à la distance à l'exemple positif
 * Semi hard triplets : la loss reste positive car le résultat est ambigü (dans la marge entre l'exemple positif et l'exemple négatif) 
 
 #### Contrastive Loss
 
-Ici, un exemple d'apprentissage se présente simplement sous la forme de trois entrées : la requête $q_i$, un exemple de document $t_i$, et un label $y_i$ siginifiant si l'exemple est négatif ($y_i=0$) ou positif ($y_i=1$).
+Ici, un exemple d'apprentissage se présente simplement sous la forme de trois entrées : la requête \\(q_i\\), un exemple de document \\(t_i\\), et un label \\(y_i\\) siginifiant si l'exemple est négatif (\\(y_i=0\\)) ou positif (\\(y_i=1\\)).
 
-Cette loss - appelons la $\mathcal{l}_{\theta}^{C}$  - s'écrit alors : 
+Cette loss - appelons la \\(\mathcal{l}_{\theta}^{C}\\)  - s'écrit alors : 
 
 
 $$ \mathcal{l}_{\theta}^{C}(q_i, t_i, y_i) = y_i\mathcal{l}_{\theta}^{+}(q_i, t_i)+ (1 - y_i)\mathcal{l}_{\theta}^{-}(q_i, t_i, \epsilon)   $$
 
-Cette fonction prendra donc une forme différente selon si l'exemple est négatif ou positif. Nous allons nous aider de la fonction auxiliaire $E$, qui n'est autre qu'un produit scalaire normalisé. Il s'agit d'une définition de la similarité cosine : 
+Cette fonction prendra donc une forme différente selon si l'exemple est négatif ou positif. Nous allons nous aider de la fonction auxiliaire \\(E\\), qui n'est autre qu'un produit scalaire normalisé. Il s'agit d'une définition de la similarité cosine : 
 
 $$ E(x,y) =  \frac{ <x,y> }{\left\lVert x \right\lVert \left\lVert y \right\lVert}  $$
 
