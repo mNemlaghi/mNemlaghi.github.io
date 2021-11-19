@@ -18,7 +18,7 @@ L'espace de représentation sert à calculer un score de similarité entre la re
 
 Le but du ranking est d'ordonner \\(N\\) scores \\(s_i\\), calculés via la démarche suivante:
 
- * les documents et la requête sont projetés dans un espace euclidien, i.e. une fonction \\( e_{\theta}\\) qui projette les textes dans un espace hilbertien \\(\mathbf{R}^d\\), où $d$ est la dimension de l'espace et $\theta$ un ensemble de paramètres caractérisant la projection \\(e\\):
+ * les documents et la requête sont projetés dans un espace euclidien, i.e. une fonction \\( e_{\theta}\\) qui projette les textes dans un espace hilbertien \\(\mathbf{R}^d\\), où _d_ est la dimension de l'espace et $\theta$ un ensemble de paramètres caractérisant la projection \\(e\\):
 
  * Munis de cette projection \\(e\\), nous pouvons calculer les scores suivants et d'un opérateur \\(<., .>\\) :
 
