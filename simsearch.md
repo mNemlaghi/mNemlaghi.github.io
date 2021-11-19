@@ -16,9 +16,9 @@ Les modèles de recommandation basés sur le contenu textuel se basent sur des m
 
 L'espace de représentation sert à calculer un score de similarité entre la requête et chacun des contenus. Le choix d'un tel espace de représentation est donc crucial en ce qui concerne la qualité de la recommandation subséquente. Formellement, si l'on a une suite de documents \\(( t_1, ...t_N)\\) issus d'un ensemble de documents que l'on souhaite comparer à une requête \\(q\\) introduite par un utilisateur.
 
-Le but du ranking est d'ordonner $N$ scores \\(s_i\\), calculés via la démarche suivante:
+Le but du ranking est d'ordonner \\(N\\) scores \\(s_i\\), calculés via la démarche suivante:
 
- * les documents et la requête sont projetés dans un espace euclidien, i.e. une fonction \\( e_{\theta}\\) qui projette les textes dans un espace hilbertien $\mathbf{R}^d$, où $d$ est la dimension de l'espace et $\theta$ un ensemble de paramètres caractérisant la projection $e$ :
+ * les documents et la requête sont projetés dans un espace euclidien, i.e. une fonction \\( e_{\theta}\\) qui projette les textes dans un espace hilbertien \\(\mathbf{R}^d\\), où $d$ est la dimension de l'espace et $\theta$ un ensemble de paramètres caractérisant la projection \\(e\\):
 
  * Munis de cette projection \\(e\\), nous pouvons calculer les scores suivants et d'un opérateur \\(<., .>\\) :
 
@@ -27,7 +27,7 @@ $$ \forall i \in [[1,N]], s_i = <e_{\theta}(t_i), e_{\theta}(q)> $$
 
 * L'opérateur \\(<.,.>\\)  peut être un opérateur comme le produit scalaire, la similarité cosine, etc. 
 
-L'ensemble $\theta$ de paramètres peut être appris via de l'apprentissage supervisé
+L'ensemble \\(\theta\\) de paramètres peut être appris via de l'apprentissage supervisé
 
 Nous proposons ici de comparer les 3 types d'espace de représentation.
 
@@ -37,7 +37,7 @@ Une méthode sparse : le scoring est effectué à l'aide d'un espace de représe
 
 ### Les méthodes denses
 
-Ici, l'espace de représentation est obtenu pour effectuer des opérations sur des aspects sémantiques (liés au sens des mots), plutôt que fréquentiels (liés aux occurrences strictes des mots). L'espace de représentation est ici appelé un embedding, car il représente une séquence dans un espace de dimension $d$ assez réduite pour pouvoir efficacement effectuer des opérations algébriques : \\(d << V\\), où \\(V\\) est le vocabulaire du corpus étudié.
+Ici, l'espace de représentation est obtenu pour effectuer des opérations sur des aspects sémantiques (liés au sens des mots), plutôt que fréquentiels (liés aux occurrences strictes des mots). L'espace de représentation est ici appelé un embedding, car il représente une séquence dans un espace de dimension \\(d\\) assez réduite pour pouvoir efficacement effectuer des opérations algébriques : \\(d << V\\), où \\(V\\) est le vocabulaire du corpus étudié.
 
 #### Les embeddings _context free_
 
@@ -60,7 +60,7 @@ Similairement, si l'espace de représentation est important, la manière de calc
 
 ### Evaluation par apprentissage/finetuning
 
-Si nous ne sommes pas satisfaits des espaces pré-entraînés, nous pouvons les affiner en ajustant tout ou partie de leur jeu de paramètres $\theta$ par un mécanisme d'apprentissage supervisé.
+Si nous ne sommes pas satisfaits des espaces pré-entraînés, nous pouvons les affiner en ajustant tout ou partie de leur jeu de paramètres \\(\theta\\) par un mécanisme d'apprentissage supervisé.
 
 Pour ce faire, nous avons classiquemetn besoin d'un jeu d'exemples annotés ainsi que d'une fonction de coût. Celle-ci nous permettra de minimiser l'erreur liée à la construction de notre espace de projection. La littérature nous fournit entre autres deux possibilités, impliquant quelques ajustements quant à la donnée d'entraînement. Supposons que l'on dispose de M examples de requêtes  \\(q_i\\), pour \\(i \in [[1, M]]\\) avec les résultats de documents, positifs et négatifs. 
 
@@ -68,13 +68,13 @@ Pour ce faire, nous avons classiquemetn besoin d'un jeu d'exemples annotés ains
 
 Les triplets permettent de changer l'espace de représentation pour rapprocher les éléments similaires et éloigner les éléments dissemblables. La contrepartie est que chaque exemple doit être accompagné de deux exemples, l'un positif et l'autre négatif.
  
-Une requête \\(q_i\\) est alors qualifiée d'_anchor_ (ancre) , \\(t_{p}^i\\) un texte correspondant à une réponse positive et \\(t_{n}^i\\) une réponse négative. La fonction de coût - à minimiser en fonction des paramètres s'écrit alors :
+Une requête \\(q_i\\) est alors qualifiée d'_anchor_ (ancre) , \\(t_{i}^p\\) un texte correspondant à une réponse positive et \\(t_{i}^n\\) une réponse négative. La fonction de coût - à minimiser en fonction des paramètres s'écrit alors :
 
-$$ \mathcal{l}_{\theta}^{T}(q_i, t_{p}^i, t_{n}^i) = max(\left\lVert e_{\theta}(q_i) -  e_{\theta}(t_{p}^i) \right\lVert^2 - \left\lVert  e_{\theta}(q_i) - e_{\theta}(t_{n}^i)  \right\lVert^2, \epsilon)  $$
+$$ \mathcal{l}_{\theta}^{T}(q_i, t_{i}^p, t_{i}^n) = max(\left\lVert e_{\theta}(q_i) -  e_{\theta}(t_{i}^p) \right\lVert^2 - \left\lVert  e_{\theta}(q_i) - e_{\theta}(t_{i}^n)  \right\lVert^2, \epsilon)  $$
 
 Le but de l'apprentissage est de trouver le jeu \\(\theta^*\\) de paramètres satisfaisant : 
 
-$$ \theta^* = \arg\min_{\theta}  \sum_{i=1}^{M}  \mathcal{l}_{\theta}^{T}(q_i, t_{p}^i, t_{n}^i) $$
+$$ \theta^* = \arg\min_{\theta}  \sum_{i=1}^{M}  \mathcal{l}_{\theta}^{T}(q_i, t_{i}^p, t_{i}^n) $$
 
 \\(\left\lVert.\right\lVert \\) est une norme euclidienne, et \\(\epsilon\\) est qualifié de _marge_.
 
@@ -99,7 +99,7 @@ $$ E(x,y) =  \frac{ <x,y> }{\left\lVert x \right\lVert \left\lVert y \right\lVer
 
 | Cas positif | Cas négatif |
 |-------------|-------------|
-| $$ \mathcal{l}_{\theta}^{+}(q_i, t_i) = \frac{1}{4}(1 - E(e_{\theta}(q_i), e_{\theta}(t_i))) $$ | $$ \mathcal{l}_{\theta}^{-}(q_i, t_i, \epsilon) = E(e_{\theta}(q_i), e_{\theta}(t_i))^{2}\mathbb{1}_{E(e_{\theta}(q_i), e_{\theta}(t_i))<\epsilon} $$ |
+| $$ \small \mathcal{l}_{\theta}^{+}(q_i, t_i) = \frac{1}{4}(1 - E(e_{\theta}(q_i), e_{\theta}(t_i))) $$ | $$ \small \mathcal{l}_{\theta}^{-}(q_i, t_i, \epsilon) = E(e_{\theta}(q_i), e_{\theta}(t_i))^{2}\mathbb{1}_{E(e_{\theta}(q_i), e_{\theta}(t_i))<\epsilon} $$ |
 
 Ainsi, cette fonction de coût s'apprend de la même manière que précédemment : 
 
