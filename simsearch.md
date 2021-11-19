@@ -14,7 +14,7 @@ Les modèles de recommandation basés sur le contenu textuel se basent sur des m
 
 ### Espaces de représentation
 
-L'espace de représentation sert à calculer un score de similarité entre la requête et chacun des contenus. Le choix d'un tel espace de représentation est donc crucial en ce qui concerne la qualité de la recommandation subséquente. Formellement, si l'on a une suite de documents $(t_1, ...t_N)$ issus d'un ensemble de documents que l'on souhaite comparer à une requête $q$ introduite par un utilisateur.
+L'espace de représentation sert à calculer un score de similarité entre la requête et chacun des contenus. Le choix d'un tel espace de représentation est donc crucial en ce qui concerne la qualité de la recommandation subséquente. Formellement, si l'on a une suite de documents \\((\ t_1, ...t_N)) issus d'un ensemble de documents que l'on souhaite comparer à une requête $q$ introduite par un utilisateur.
 
 Le but du ranking est d'ordonner $N$ scores $s_i$, calculés via la démarche suivante:
 
