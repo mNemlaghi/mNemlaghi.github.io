@@ -1,3 +1,9 @@
+<header>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.js" integrity="sha384-9Nhn55MVVN0/4OFx7EE5kpFBPsEMZxKTCnA+4fqDmg12eCTqGi6+BB2LjY8brQxJ" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+</header>
+
 # Modèle de représentation de textes pour un prototype de recommandation: méthodologie et ingénierie
 
 J'ai créé un prototype de recommandation de films sur base de transformers. Le titre de ma maquette [Canap' is all you need](https://huggingface.co/spaces/mnemlaghi/canap) est un clin d'oeil/hommage appuyé à l'article fondateur des mécanismes d'attention [Attention is all you need](https://arxiv.org/abs/1706.03762). J'évoque ici les différents modèles utilisés ainsi que quelques pistes d'exploitation.
