@@ -1,7 +1,5 @@
 # Configurations
-title:            Jekyll Gitbook
-longtitle:        Jekyll Gitbook
-remote_theme:     sighingnow/jekyll-gitbook
+remote_theme: pages-themes/architect@v0.2.0
 markdown: kramdown
 kramdown:
     math_engine: katex
