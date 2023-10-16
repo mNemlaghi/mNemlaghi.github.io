@@ -48,7 +48,7 @@ Let's begin with part 1!
 Word embeddings are a vehicle that allow computers to perform operations on words. By extension, sentence embeddings turn a sentence into a vector. Said otherwise, we can see it as a mapping function between a word - or, more interestingly, a sequence of words - and a vector. Embeddings are aimed at capturing semantic relationships between words. We won't deep dive into this part today, but the interested reader can find some foundational links below to gain a historical perspective on this.
 
 
-![A historical perspective on embeddings evolution](image-2.png)
+![A historical perspective on embeddings evolution](embeddings-history.png)
 
 * Mikolov's [Word2vec](https://medium.com/r/?url=https%3A%2F%2Farxiv.org%2Fabs%2F1301.3781) 
 * [Glove](https://medium.com/r/?url=https%3A%2F%2Fnlp.stanford.edu%2Fprojects%2Fglove%2F)
@@ -117,7 +117,7 @@ From its description, [SageMaker Jumpstart](https://medium.com/r/?url=https%3A%2
 
 A GIF is worth a thousand words:
 
-[![Watch the video](image-3.png)](/Users/mehdinemlaghi/zensim-experiments/amazon-bedrock-workshop/00_Intro/JumpStartDemo2.mov)
+[![Watch the video](default-jumpstart-image.png)](./JumpStartDemo2.mov)
 
 
 
@@ -184,11 +184,7 @@ Assuming we'd want to perform retrieval augmented generation, we'd need a strong
 
 The growing number of academic papers poses a challenge for scientists and practitioners who need to verify the accuracy of scientific claims. [Scifact](https://allenai.org/data/scifact) provides a collection of  expert claims alongside abstracts, with veracity labels that support or refute the claims. We can frame it as a fact-checking dataset, which is in line with RAG purpose: facts ! Evaluation is about correctly predicting whether an evidence supports, contradicts or is neutral to a given scientific claim. Reference score is normalized discount gain @ 10.
 
-
-
-
-
-![Alt text](image-5.png)
+![Alt text](inferencevsquality.png)
 
 Here are some take aways:
 * First remark: this graph purposely doesn't contain any absolute value. Scores are amongst the best either way, and log(1/(1+NbParameters)) is a proxy heuristic for speed. It's a comparison-based companion.
