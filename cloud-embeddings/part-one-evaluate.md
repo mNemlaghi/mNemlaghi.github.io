@@ -24,7 +24,7 @@ Embeddings are becoming the backbone of many tasks encompassing various levels o
 
 This series of blog posts aims at providing help for effectively selecting, evaluating and deploying and storing pre-trained embeddings with the help of AWS services. I'll briefly introduce some concepts and I'll provide codes, notebooks and infrastructure as a code (IaC) with CDK so that you can deploy your own state-of-the-art embedding system in a repeatable, robust manner. In order to do so, your companion for this blog series will be  the following Github repository, simply called [_cloud-embeddings_](https://github.com/mNemlaghi/cloud-embeddings/tree/main) 😁.
 
-![A historical perspective on embeddings evolution](image.png)
+![A historical perspective on embeddings evolution](./reading-order.png)
 
 
 ## Suggested reading order
