@@ -1,4 +1,7 @@
-theme: jekyll-theme-slate
+# Configurations
+title:            Jekyll Gitbook
+longtitle:        Jekyll Gitbook
+remote_theme:     sighingnow/jekyll-gitbook
 markdown: kramdown
 kramdown:
     math_engine: katex
