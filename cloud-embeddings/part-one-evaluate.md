@@ -24,7 +24,7 @@ Embeddings are becoming the backbone of many tasks encompassing various levels o
 
 This series of blog posts aims at providing help for effectively selecting, evaluating and deploying and storing pre-trained embeddings with the help of AWS services. I'll briefly introduce some concepts and I'll provide codes, notebooks and infrastructure as a code (IaC) with CDK so that you can deploy your own state-of-the-art embedding system in a repeatable, robust manner. In order to do so, your companion for this blog series will be  the following Github repository, simply called [_cloud-embeddings_](https://github.com/mNemlaghi/cloud-embeddings/tree/main) 😁.
 
-![A historical perspective on embeddings evolution](./reading-order.png)
+![A historical perspective on embeddings evolution](./embeddings-history.png)
 
 
 ## Suggested reading order
@@ -38,7 +38,7 @@ While parts are aimed at being loosely coupled, here's a humble suggestion of re
 * Part 4: storing embeddings and creating a retriever with RDS.
 
 
-![Suggested reading order for this series](image-1.png)
+![Suggested reading order for this series](./reading-order.png)
 
 
 Let's begin with part 1!
@@ -117,8 +117,7 @@ From its description, [SageMaker Jumpstart](https://medium.com/r/?url=https%3A%2
 
 A GIF is worth a thousand words:
 
-[![Watch the video](default-jumpstart-image.png)](./JumpStartDemo2.mov)
-
+[![Watch the video](./JumpStartDemo2.gif)
 
 
 ## HuggingFace hub and Sentence Transformers.
