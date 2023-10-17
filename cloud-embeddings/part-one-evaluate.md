@@ -24,7 +24,7 @@ Embeddings are becoming the backbone of many tasks encompassing various levels o
 
 This series of blog posts aims at providing help for effectively selecting, evaluating and deploying and storing pre-trained embeddings with the help of AWS services. I'll briefly introduce some concepts and I'll provide codes, notebooks and infrastructure as a code (IaC) with CDK so that you can deploy your own state-of-the-art embedding system in a repeatable, robust manner. In order to do so, your companion for this blog series will be  the following Github repository, simply called [_cloud-embeddings_](https://github.com/mNemlaghi/cloud-embeddings/tree/main) 😁.
 
-![A historical perspective on embeddings evolution](./embeddings-history.png)
+
 
 
 ## Suggested reading order
@@ -173,7 +173,7 @@ We said we'd want state-of-the-art embeddings: let's see big and briefly focus o
 2. Define the language. It's a hard constraint, since most of the models are trained with English data, but there are lots of highly performant open available multilingual embedding models
 3. Start with the best trade-off model between the number of parameters (or model size) and ranking of your selected tasks. Number of parameters or model size can be seen as a weak proxy of inference speed
 
-![Source: https://huggingface.co/blog/mteb](image-4.png)
+![Source: https://huggingface.co/blog/mteb](mteb-tasks.png)
 
 ### Analyzing data on retrieval task for several pre-trained models
 
@@ -206,7 +206,7 @@ In this pricing model, you can purchase a specific number of "model units," whic
 
 ## MTEB 🫱🏾‍🫲🏻 SageMaker processing
 
-When MTEB furnishes the evaluation canvas, we might chase for some computing resources: indeed, some tasks require heavy computation. In the [evaluation part of the repository](https://medium.com/r/?url=https%3A%2F%2Fgithub.com%2FmNemlaghi%2Fcloud-embeddings%2Fblob%2Fmain%2Fevaluate%2Fmteb_evaluate.ipynb), I wrote down a script to write down a scrript. Here's an excerpt from the notebook, where I spin up a PyTorch processor (HuggingFace processor doesn't support yet CPU only processing) with SageMaker SDK.
+When MTEB furnishes the evaluation canvas, we might chase for some computing resources: indeed, some tasks require heavy computation. In the [evaluation part of the repository](https://medium.com/r/?url=https%3A%2F%2Fgithub.com%2FmNemlaghi%2Fcloud-embeddings%2Fblob%2Fmain%2Fevaluate%2Fmteb_evaluate.ipynb), I wrote down a script to take advantage from MTEB, BedRock and SageMaker processing. Here's an excerpt from the notebook, where I spin up a PyTorch processor (HuggingFace processor doesn't support yet CPU only processing) with SageMaker SDK.
 
 
 ```python
@@ -253,8 +253,7 @@ def run_sm_processing_job(model_name, script_dir = "sbertscripts"):
 
 As usual, using AWS APIs require proper and well bounded authorization through IAM.
 
-🔐 : If you want to evaluate BedRock inside a SageMaker processing, the IAM role executing the SageMaker processing job must have the relevant 
-permissions. More specifically, we might want to invoke the Titan embedding model. Here's a working example of a proper policy.
+🔐 : If you want to evaluate BedRock inside a SageMaker processing, the IAM role executing the SageMaker processing job must have the relevant permissions. More specifically, we might want to invoke the Titan embedding model. Here's a working example of a proper policy.
 
 
 ```json
@@ -272,7 +271,7 @@ permissions. More specifically, we might want to invoke the Titan embedding mode
 ```
 
 
-Now for the script itself, MTEB reveals itself to be very powerful, even for API based embeddings. All we need is to create a class with an `encode` method taking list of sentences as inputs and returning list of embeddings as outputs, and we're good to go!
+Now for the script itself, MTEB reveals itself to be flexible, allowing for API based embeddings. All we need is to create a class with an `encode` method taking list of sentences as inputs and returning list of embeddings as outputs, and we're good to go!
 
 
 ```python
@@ -318,7 +317,7 @@ class NaiveBedRockEmbedding():
 evaluation = MTEB(tasks=["SciFact"])
 evaluation.run(model, eval_splits=["test"], output_folder=output_path_folder)
 ```
-With the help of `joblib` library, I used a bit of batching in here in order to speed up the operations.
+With the help of `joblib` library, I used a bit of batching in order to speed up the operations.
 
 ### Results 
 
@@ -339,7 +338,7 @@ miniLML6 |22M| 384| 64.51
 
 As per SciFact evaluation, bigger isn't always better. SOTA is achieved with GTE; even better, its _base_ flavor out performs its thrice bigger _large_ counterpart by a margin of almost 2 points!
 
-In our case, Titan embedding is approaching SOTA.
+In our case, Titan embedding is approaching SOTA for SciFact.
 
 
 ## Recap and what's next
