@@ -45,16 +45,16 @@ Let's begin with part 1!
 
 ## Word embeddings: a historical perspective
 
-Word embeddings are a vehicle that allow computers to perform operations on words. By extension, sentence embeddings turn a sentence into a vector. Said otherwise, we can see it as a mapping function between a word - or, more interestingly, a sequence of words - and a vector. Embeddings are aimed at capturing semantic relationships between words. We won't deep dive into this part today, but the interested reader can find some foundational links below to gain a historical perspective on this.
+Word embeddings are a vehicle that allow computers to turn words into vectors, and thus to perform operations on words. By extension, sentence embeddings turn a sentence into a vector. Said otherwise, we can see it as a mapping function between a word - or, more interestingly, a sequence of words - and a vector. Embeddings are aimed at capturing semantic relationships between words. We won't deep dive into this part today, but the interested reader can find some foundational links below to gain a historical perspective on this.
 
 
 ![A historical perspective on embeddings evolution](embeddings-history.png)
 
-* Mikolov's [Word2vec](https://medium.com/r/?url=https%3A%2F%2Farxiv.org%2Fabs%2F1301.3781) 
-* [Glove](https://medium.com/r/?url=https%3A%2F%2Fnlp.stanford.edu%2Fprojects%2Fglove%2F)
-* [fastText](https://medium.com/r/?url=https%3A%2F%2Ffasttext.cc%2F)
-* [Attention is all you need](https://medium.com/r/?url=https%3A%2F%2Farxiv.org%2Fabs%2F1706.03762)
-* [ELMo](https://medium.com/r/?url=https%3A%2F%2Farxiv.org%2Fabs%2F1802.05365)
+* Mikolov's [Word2vec](https://arxiv.org/abs/1301.3781) 
+* [Glove](https://nlp.stanford.edu/projects/glove/)
+* [fastText]( https://fasttext.cc/)
+* [Attention is all you need](https://arxiv.org/abs/1706.03762)
+* [ELMo](https://arxiv.org/abs/1802.05365)
 * [BERT](https://arxiv.org/pdf/1810.04805.pdf)
 
 To summarize, embeddings are the backbone of current AI hype, especially in their text-based flavor.
