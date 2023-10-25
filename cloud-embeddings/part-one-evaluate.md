@@ -17,9 +17,15 @@ Imagine you're preparing a group of athletes for a variety of races, from marath
 
 Your use-case is quite different though: your runners need to perform the 1000 meters sprint. While this race is shorter and requires a different set of skills, you can easily find that the core fitness and endurance developed by your marathon runner could be at the very least… valuable. This is where transfer learning comes into play.
 
+
+![AI generated image for transfer learning](https://github.com/mNemlaghi/mNemlaghi.github.io/assets/12110853/c21eba1e-0ed3-4d16-ac66-a2aa8942c556)
+
+
 In the same way that you don't start from scratch when training your marathon runner for a sprint, you can leverage pretrained embeddings in transfer learning. These embeddings, like the runner's endurance, capture valuable information from a previous task, such as language understanding in NLP. Just as the marathon runner fine-tunes their training regimen to thrive in a 1000 meters sprint, you can fine-tune the pretrained embeddings to improve performance on a specific NLP task, such as sentiment analysis. Also, due to their versatility, you can also fine-tune the pretrained embeddings to capture a specific domain vocabulary.
 
 Over the last few years, we noticed a change in the ML paradigm. Open-source model development has led multiple organizations to share their already trained models on massive amounts of data, alongside improving training techniques, which allows models to be commoditized in over-the-shelf fashion, and fine-tuned for specific usage.
+
+
 
 
 ## Following AWS Well-Architected ML best practices.
