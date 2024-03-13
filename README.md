@@ -1,37 +1,32 @@
-## Welcome to GitHub Pages
+# Hello there! 👋 I'm Mehdi
 
-You can use the [editor on GitHub](https://github.com/mNemlaghi/mNemlaghi.github.io/edit/main/README.md) to maintain and preview the content for your website in Markdown files.
+I'm an AI-ML enthusiast, specializing in Natural Language Processing, Deep Learning, and their supporting Cloud Architecture, with a strong passion for transforming complex business challenges into high-impact AI/ML solutions. 
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+With over 15 years of experience, I've contributed to a diverse range of industries, and have had the privilege of leading agile teams, mentoring junior data scientists, and fostering an innovative working environment.
 
-### Markdown
+More importantly, I have a passion for sharing knowledge.
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+## 🔭 Most recent experiences:
 
-```markdown
-Syntax highlighted code block
+- Currently Staff Cloud Architect and AI-ML Specialist at DoiT International.
+- Senior NLP Data Scientist and Chief Algorithms Officer at SESAMm.
+- Head of Data Science at Groupe M6.
 
-# Header 1
-## Header 2
-### Header 3
+## 👨‍💻 Tech Stack:
 
-- Bulleted
-- List
+Highly experienced in a variety of tools and technologies including (but not limited to): Python, HuggingFace Suite, NumPy, Pandas, Scikit-learn, PySpark, Docker.
 
-1. Numbered
-2. List
+Cloud platforms: Amazon SageMaker, Amazon Bedrock, Amazon Athena,  Google Cloud Vertex AI, BigQuery ML.
 
-**Bold** and _Italic_ and `Code` text
+Deeply interested in bringing ML insights to businesses and creating high-impact applications that enhance business outcomes.
 
-[Link](url) and ![Image](src)
-```
+## 📚 Recent contributions
 
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
+- [Cloud embeddings blog series](https://mnemlaghi.github.io/cloud-embeddings/)
+- [Cloud embedding repository](https://github.com/mNemlaghi/cloud-embeddings/tree/main)
+- [GenAI hands-on with AWS Bedrock](https://github.com/mNemlaghi/startup-loft-genai-102)
 
-### Jekyll Themes
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/mNemlaghi/mNemlaghi.github.io/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+## 📬 Get in Touch
 
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+- LinkedIn: [https://www.linkedin.com/in/mehdi-nemlaghi-0b12491a/]
