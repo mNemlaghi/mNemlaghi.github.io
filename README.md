@@ -29,4 +29,4 @@ Deeply interested in bringing ML insights to businesses and creating high-impact
 
 ## 📬 Get in Touch
 
-- LinkedIn: [https://www.linkedin.com/in/mehdi-nemlaghi-0b12491a/]
+- [LinkedIn](https://www.linkedin.com/in/mehdi-nemlaghi-0b12491a/)
