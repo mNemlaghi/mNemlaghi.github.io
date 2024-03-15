@@ -111,15 +111,15 @@ Development costs and delays (in time to deliver angle) are already optimized si
 
 When determining the optimal embedding model for your use-case, it's essential to consider various inference criteria, particularly with respect to latency requirements. These criteria are independent of the instance they'll be deployed upon and will include:
 
-* Pretrained Model Size: This metric refers to the number of parameters within the model. It holds significance not only when fine-tuning the model but also when deploying it within an instance. A smaller pretrained model size can lead to faster inference times and more efficient resource utilization,making it an important consideration for real-time applications.Models with a smaller memory footprint are generally easier to deploy and maintain.
-* Embedding Size: The embedding size denotes the dimension of the resulting vector space, often measured in terms of the number of vectors. This dimensionality directly impacts the richness and complexity of the captured semantic information. While a higher embedding size can potentially yield more nuanced representations, it may also lead to increased computational demands during inference. Striking the right balance between embedding size and computational efficiency is crucial when deploying your model. It's an important criteria, subject to a trade-off, as per:
-* The bigger dimension is, the more algebraic operations (*FLOPS*) will be performed, thus limiting the memory footprint;
+* _Pretrained Model Size_: This metric refers to the number of parameters within the model. It holds significance not only when fine-tuning the model but also when deploying it within an instance. A smaller pretrained model size can lead to faster inference times and more efficient resource utilization,making it an important consideration for real-time applications.Models with a smaller memory footprint are generally easier to deploy and maintain.
+* _Embedding Size_: The embedding size denotes the dimension of the resulting vector space, often measured in terms of the number of scalars compounding the vector. This dimensionality directly impacts the richness and complexity of the captured semantic information. While a higher embedding size can potentially yield more nuanced representations, it may also lead to increased computational demands during inference. Striking the right balance between embedding size and computational efficiency is crucial when deploying your model. It's an important criteria, subject to a trade-off, as per:
+* The bigger dimension is, the more algebraic operations (*FLOPS*) will be performed, thus expanding the memory footprint;
 * The larger the dimension, the larger the subsequent storage.
 
 
 ## Quality criteria: introducing Massive Text Embedding Benchmark.
 
-At the start of our blog post, we began by stating that embeddings are vehicles. Turning a document into a list of words doesn't have an interest per se. Embeddings are good instruments for accomplishing downstream tasks, and a builder might focus on the latter when developing the former.
+At the start of our blog post, we began by stating that embeddings are vehicles. Turning a document into a list of words doesn't have an interest _per se_. Embeddings are good instruments for accomplishing downstream tasks, and a builder might focus on the latter when developing the former.
 
 At this stage, you have two avenues:
 * You already have your own evaluation dataset. Henceforth, you might just need an evaluation metric to assess the quality of your embedding.
