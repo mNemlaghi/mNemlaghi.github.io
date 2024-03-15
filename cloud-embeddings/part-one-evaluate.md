@@ -47,14 +47,30 @@ In this first part, we are going to plunge into the fascinating universe of pre-
 Having said that, where to start? In 2023, there's a plethora of avenues in order to select a pre-trained embedding system. Multiple options are available for developers, from the most generic/highest level embeddings to the most specific/customizable ones. Let's review them:
 
 
-### Out of the box solutions
+### Proprietary solutions
 
-At the highest level, you can fetch purpose-built  embeddings by subscribing an API: for instance, Amazon Bedrock provides the ability to fetch numerical representations of sentences thanks to Titan embedding (similar to OpenAI embeddings, such as `ada`). We'll test BedRock below for a retrieval task; this will be the opportunity for us to interact with its API a bit more!
+At the highest level, you can fetch purpose-built  embeddings by subscribing to an API: for instance, Amazon Bedrock provides the ability to fetch numerical representations of sentences (similar to OpenAI embeddings, such as `ada`). 
+
+#### Bedrock embeddings
 
 
-### SageMaker Jumpstart
+Generative AI is not limited to text generation. As a matter of fact, the type of content generated (or inputted) by a model is called a _modality_. Embeddings belong to these modalities. You can find embeddings in the "Foundation models" -> "Base models" section of Bedrock in your Amazon console.
 
-The AI parts of this series will mostly rely on Amazon SageMaker: an umbrella of AWS services allowing builders to effectively develop, train and deploy machine learning models. Much, much more than a simple "cloud notebook", SageMaker offers tools destined to diverse AI skills
+
+✍🏼 Since these models are provided by external providers, an active EULA is necessary beforehand. It takes a couple of clicks with Amazon Bedrock toto agree and use the model: 
+- go to "Model access" on the left bar of Bedrock console;
+- revise the EULA specifics on the desired model;
+- check the right box on a model.
+
+Then you're good to go! To this date, two providers offer embedding models: Amazon and Cohere. 
+
+![Alt text](image.png) 
+
+We'll test both of them below for a retrieval task; this will be the opportunity for us to interact with its API a bit more!
+
+### SageMaker Jumpstart: highway to open-source embeddings
+
+Let's begin by briefly define SageMaker: an umbrella of AWS services allowing builders to effectively develop, train and deploy machine learning models. Much, much more than a simple "cloud notebook", SageMaker offers tools destined to diverse AI skills
 
 From its description, [SageMaker Jumpstart](https://medium.com/r/?url=https%3A%2F%2Fdocs.aws.amazon.com%2Fsagemaker%2Flatest%2Fdg%2Fstudio-jumpstart.html) takes the logic further by directly providing a wide range of pretrained models and solutions, in a click-button manner. It removes the hassle of deploying models manually or losing time in configuring options. Let's see how Jumpstart helps us in quickly selecting embedding models and deploy them to production:
 
@@ -111,9 +127,7 @@ At this stage, you have two avenues:
 
 Fortunately, there's a brand new *de facto* standard toolset aiming at effectively selecting your embedding model, depending on your task. Enter MTEB!
 
-Released in late 2022, Massive Training Embedding Benchmark ([MTEB](https://medium.com/r?url=https%3A%2F%2Fgithub.com%2Fembeddings-benchmark%2Fmteb)) is a library that provides an off the shelf evaluation of many embedding systems, including OpenAI's. Alongside this powerful library, a leaderboard is also available. At the time of writing, the leaderboard is dominated by purpose-built solutions, such as MPNET, BGE, E5 families and GTE.
-
-We said we'd want state-of-the-art embeddings: let's see big and briefly focus on the brand new open source best-in-class, BGE BAAI General Embedding, provided by the Beijing Academy of Artificial Intelligence in August 2023.
+Released in late 2022, Massive Training Embedding Benchmark ([MTEB](https://medium.com/r?url=https%3A%2F%2Fgithub.com%2Fembeddings-benchmark%2Fmteb)) is a library that provides an off the shelf evaluation of many embedding systems, including OpenAI's. Alongside this powerful library, a leaderboard is also available. At the time of writing, the leaderboard is dominated by a blend of proprietary and open source solutions, such as Cohere, BGE, GTE families and GTE.
 
 
 ### How to use MTEB?
@@ -128,29 +142,19 @@ We said we'd want state-of-the-art embeddings: let's see big and briefly focus o
 
 Assuming we'd want to perform retrieval augmented generation, we'd need a strong retriever. MTEB includes BEIR benchmark, on-purpose benchmark for retrieval. Let's first select a task suitable for Retrieval.
 
-#### _The task_
+#### _The task: science!_
 
-The growing number of academic papers poses a challenge for scientists and practitioners who need to verify the accuracy of scientific claims. [Scifact](https://allenai.org/data/scifact) provides a collection of  expert claims alongside abstracts, with veracity labels that support or refute the claims. We can frame it as a fact-checking dataset, which is in line with RAG purpose: facts ! Evaluation is about correctly predicting whether an evidence supports, contradicts or is neutral to a given scientific claim. Reference score is normalized discount gain @ 10.
 
-![Alt text](inferencevsquality.png)
 
-Here are some take aways:
-* First remark: this graph purposely doesn't contain any absolute value. Scores are amongst the best either way, and log(1/(1+NbParameters)) is a proxy heuristic for speed. It's a comparison-based companion.
-* We roughly distinguish 3 clusters:
-    * Top of class embeddings: BGE, GTE and E5 in their large version but with relatively high number of parameters
-*   Compact speedy embeddings, such as MiniLML6, with honorable performance
-*   Sweet spot between speed and quality, as embodied by MPNET
+ The growing number of academic papers poses a challenge for scientists and practitioners who need to verify the accuracy of scientific claims. [Scifact](https://allenai.org/data/scifact) provides a collection of  expert claims alongside abstracts, with veracity labels that support or refute the claims. We can frame it as a fact-checking dataset, which is in line with RAG purpose: extracting facts ! Evaluation is about correctly predicting whether an evidence supports, contradicts or is neutral to a given scientific claim. Reference score is normalized discount gain @ 10.
 
-As you can observe, there's no such thing as free lunch. A trade-off between quality and latency has to be specified, depending on your needs.
-
-NB: when I state "high number of parameters" for top of class, it is still several *orders of magnitude* below large language models. All things considered, these embeddings are very tiny in regard to the current wave of trillions-based LLMs!
 
 
 #### Provisioned throughputs in Bedrock
 
 Additionally, when using Amazon Bedrock, especially for large workloads or when strict latency requirements are in place, you have the option to enhance both performance and inference speed by utilizing the provisioned throughput mode.
 
-In this pricing model, you can purchase a specific number of "model units," which are equivalent to a maximum number of token inputs and outputs per minute. By committing to this arrangement for a set period, typically 1 or 6 months, you can ensure that your embedding system operates at its maximum capacity.
+In this pricing model, you can purchase a specific number of "model units," which can be measured as the equivalent to a maximum number of token inputs and outputs per minute. By committing to this arrangement for a set period, typically 1 or 6 months, you can ensure that your embedding system operates at its maximum capacity.
 
 
 ## MTEB 🫱🏾‍🫲🏻 SageMaker processing
@@ -202,7 +206,7 @@ def run_sm_processing_job(model_name, script_dir = "sbertscripts"):
 
 As usual, using AWS APIs require proper and well bounded authorization through IAM.
 
-🔐 : If you want to evaluate BedRock inside a SageMaker processing, the IAM role executing the SageMaker processing job must have the relevant permissions. More specifically, we might want to invoke the Titan embedding model. Here's a working example of a proper policy.
+🔐 : If you want to evaluate BedRock inside a SageMaker processing job, the IAM role executing the SageMaker processing job must have the relevant permissions. More specifically, we might want to invoke the Titan embedding model. Here's a working example of a proper policy, where a user can invoke two models.
 
 
 ```json
@@ -213,15 +217,18 @@ As usual, using AWS APIs require proper and well bounded authorization through I
 			"Sid": "VisualEditor0",
 			"Effect": "Allow",
 			"Action": "bedrock:InvokeModel",
-			"Resource": "arn:aws:bedrock:*::foundation-model/amazon.titan-embed-text-v1"
+			"Resource": ["arn:aws:bedrock:*::foundation-model/amazon.titan-embed-text-v1", "arn:aws:bedrock:*::foundation-model/cohere.embed-english-v3"]
 		}
 	]
 }
 ```
 
 
-Now for the script itself, MTEB reveals itself to be flexible, allowing for API based embeddings. All we need is to create a class with an `encode` method taking list of sentences as inputs and returning list of embeddings as outputs, and we're good to go!
 
+
+#### __Titan embeddings__
+
+Now for the script itself, MTEB reveals itself to be flexible, allowing for API based embeddings. All we need is to create a class with an `encode` method taking list of sentences as inputs and returning list of embeddings as outputs, and we're good to go!
 
 ```python
 
@@ -229,7 +236,7 @@ client = boto3.Session(region_name='us-east-1').client('bedrock-runtime')
 
 #[...]
 
-class NaiveBedRockEmbedding():
+class NaiveTitanEmbedding():
     def encode(self, sentences, batch_size=4, **kwargs):
         """ Returns a list of embeddings for the given sentences.
         Args:
@@ -262,13 +269,25 @@ class NaiveBedRockEmbedding():
 
 
 #[...]
-
+model = NaiveTitanEmbedding()
 evaluation = MTEB(tasks=["SciFact"])
 evaluation.run(model, eval_splits=["test"], output_folder=output_path_folder)
 ```
-With the help of `joblib` library, I used a bit of batching in order to speed up the operations.
 
-### Results 
+At the time of writing this post, Titan doesn't provide batch encoding. With the help of `joblib` library, I circumvented the challenge in order to speed up the operations on Titan.
+
+We found a SciFact score of 73.5.
+
+#### __Cohere embeddings__
+
+[Cohere](https://cohere.com/) is a foundation models provider that focuses on professional AI LLM. The `v3` version of their embeddings API [Co.Embed](https://docs.cohere.com/reference/embed) includes the ability to specify the intended use for the embedding, by requesting their API users to put one of numerous `input_type` on their request : `search_documents`, `search_query`, `classification`, or `clustering`. 
+
+Moreover, it supports mulltilingual embeddings, with more than [100 languages](https://docs.cohere.com/docs/language-detection), and server-side batching up to 96 texts. 
+
+On MTEB, they report a solid 71.83 on SciFact.
+
+
+#### __Results__ 
 
 Now we'll pick up several  embedding models and synthesize them in the following tab.
 
@@ -279,7 +298,8 @@ Pretrained embedding | Number of parameters | Embedding dimension | SciFact Retr
 GTE base |768| 110M| 76.18
 BGE large |335M| 1024| 74.61
 GTE large |330M| 768| 74.27
-**Titan Embedding** |**?**| **1536**| **73.5**
+Titan Embedding | | 1536| 73.5
+Cohere Embedding (v3)| | 1024| 71.83
 E5LargeV2 |335M| 1024| 72.58
 mpNet |109M| 768| 65.57
 miniLML6 |22M| 384| 64.51
@@ -287,8 +307,22 @@ miniLML6 |22M| 384| 64.51
 
 As per SciFact evaluation, bigger isn't always better. SOTA is achieved with GTE; even better, its _base_ flavor out performs its thrice bigger _large_ counterpart by a margin of almost 2 points!
 
-In our case, Titan embedding is approaching SOTA for SciFact.
 
+### _Key take-aways_
+
+![Alt text](inferencevsquality.png)
+
+Here are some take aways:
+* First, this graph __purposely__ doesn't contain any absolute value. Scores are amongst the best either way, and log(1/(1+NbParameters)) is a proxy heuristic for speed. It's a comparison-based companion.
+* Second: it only includes open source solutions. Proprietary solutions include lightweight versions of their embeddings. 
+* We roughly distinguish 3 clusters:
+    * Top of class embeddings: BGE, GTE and E5 in their large version but with relatively high number of parameters
+*   Compact speedy embeddings, such as MiniLML6, with honorable performance
+*   Sweet spot between speed and quality, as embodied by MPNET
+
+As you can observe, there's no such thing as free lunch. A trade-off between quality and latency has to be specified, depending on your needs.
+
+NB: when I state "high number of parameters" for top of class, it is still several *orders of magnitude* below large language models. All things considered, these embeddings are very tiny in regard to the current wave of trillions-based LLMs!
 
 ## Recap and what's next
 
@@ -296,8 +330,8 @@ There was a lot to unfold out there!
 
 👉🏽 We praised the virtues of selecting a pre-trained embedding - with comparison to training a model from scratch.
 
-👉🏽 We gave some hints on searching pre-trained text-embeddings, including SageMaker JumpStart and Bedrock
+👉🏽 We gave some hints on searching pre-trained text-embeddings, including Bedrock and SageMaker JumpStart options.
 
 👉🏽 We discovered MTEB, new standard for evaluating text embeddings.
 
-👉🏽 We  selected two embeddings: one one hand, Amazon BedRock's Titan Embedding for its practicity and performance, and, on the other hand,  BGE General Embedding for its relative compacity and top performance.
+👉🏽 We  selected two embeddings: on one hand, Cohere for its practicity and performance, and, on the other hand,  BGE General Embedding for its relative compacity and top performance.
