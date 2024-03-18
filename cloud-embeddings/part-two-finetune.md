@@ -40,17 +40,18 @@ Last word on cosine similarity:  this [Netflix paper](https://arxiv.org/abs/2403
 
 PEFT stands for parameter efficient fine-tuning. Classically, when we fine-tune a model, we change every model parameter. A naive vision of this approach could lead to the following caveats:
 
-- Prohibitive costs. In a scarce resource environment, when model is very large
+- Prohibitive costs. In a scarce resource environment, when the model is very large, GPU needed would be 
 
-- Catastrophic forgetting: this phenomenon happens when fine-tuning changes parameters to the point the fine-tuned model forgets previously encapsulated general information
+- Catastrophic forgetting: this phenomenon happens when fine-tuning changes parameters to the point the fine-tuned model forgets previously encapsulated general information.
 
 PEFT circumvents these issues by freezing a majority of layers in pre-trained neural networks and focus only on specific ones. PEFT acts as an umbrella of techniques; LoRA is one of the best-in-class.
 
 ### Primer on Low Rank Adapters
 
-In the context of Machine Learning, LoRA (Low Rank Adapters) is a flavor of parameter efficient fine tuning. It is a cost-efficient way to fine-tune a model. In a nutshell, during fine-tuning, Lora constraints pre-trained weights with matrices called update matrices with a rank called r, thanks to low-rank approximations. These lower rank matrices, with lower rank, are then put inside the network during fine-tuning. After performing finetuning, initial matrices are reconstructed with updates provided by update matrices. (source: https://huggingface.co/docs/peft/main/en/conceptual_guides/lora)
+In the context of Machine Learning, LoRA (Low Rank Adapters) is a flavor of parameter efficient fine tuning. It is a cost-efficient way to fine-tune a model. In a nutshell, during fine-tuning, Lora constraints pre-trained weights with matrices called update matrices with a rank called r, thanks to low-rank approximations. These lower rank matrices, with lower rank, are then put inside the network during fine-tuning. After performing finetuning, initial matrices are reconstructed with updates provided by update matrices. ([source](https://huggingface.co/docs/peft/main/en/conceptual_guides/lora))
 
 ### What happens behind the scenes?
+
 A neural network accepts an input x and outputs an output h. Pre-trained weights are represented by a matrix W₀ ∈ ℝᵈˣᵈ.
 We add a new set of parameters, called adapters, A and B, whose dimensions are respectively d x rand r x d, with r << d.
 
@@ -59,6 +60,11 @@ During fine-tuning:
 * pre-trained weights W₀ are frozen: it means their parameters don't change during backpropagation.
 * Adapters A and B are trained; their parameters are changed.
 * After fine-tuning, we reconstruct the new weights by merging pre-trained weights and adapter weights : W= W₀ + AB
+
+
+![image](https://github.com/mNemlaghi/mNemlaghi.github.io/assets/12110853/4fa4b215-0184-4ed2-93b7-fbec889f629d)
+
+Image above is taken from original [LoRA paper](https://arxiv.org/pdf/2106.09685.pdf)
 
 Let's judge it by real numbers: if d=100, then pre-trained weights have 100000 parameters to train. If we choose r=10, then, A would have 10*100 and B would have 100*10 parameters to train, giving overall 2000 parameters, We'd use 20% of the GPU memory during backpropagation. This means that batch size can be higher when fine-tuning. Which means that training can happen faster.
 
@@ -74,7 +80,8 @@ Short answer: you'd only need to implement HuggingFace for the implementation pa
 
 Write a HuggingFace fine-tuning script: you can find examples here or here; this script will probably contain a model object
 
-```{python}
+```python
+
 from transformers import AutoModel, AutoTokenizer
 
 model = AutoModel.from_pretrained(pretrained_model)
@@ -101,7 +108,7 @@ model = get_peft_model(model, config)
 
 Now you can fine-tune.
 
-```{python}
+```python
 ## Merge the models with trained Adapters, and save it to /opt/ml/code
     merged = model.merge_and_unload()
     merged.save_pretrained(args.model_dir)
@@ -129,7 +136,7 @@ We finish by invoking a training job with SageMaker SDK, with a set of naive hyp
 
 An important hyper parameter is `lora_rank`. It's a degree of reduction. A tradeoff is to be found between  compression and performance efficiency.
 
-```{python}
+```python
 from sagemaker.huggingface import HuggingFace
 import sagemaker
 import time
