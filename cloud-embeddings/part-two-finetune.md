@@ -24,7 +24,7 @@ It also contains other fields that are beyond the scope of this blog.
 
 Numerous resources can be found  on cosine similarity (look at [Google scholar results !](https://scholar.google.com/scholar?hl=en&as_sdt=0%2C5&q=cosine+similarity+embeddings&btnG=)). Nevertheless, let's explain it briefly. It refers to the measure of similarity between two vectors in a high-dimensional space. Remember, in word embeddings, words are represented as vectors in a high-dimensional space such that similar words are mapped to nearby points in that space. 
 
-The cosine similarity between two word vectors is calculated as the dot product of the two vectors divided by the product of their magnitudes. This produces a score ranging from -1 (completely dissimilar) to 1 (completely similar). In our case, we would like to optimize the relevance between a product embedding, _p_ and a query embedding, _q_.  The formula for calculating cosine similarity is _cos(θ) = (p ⋅ q) / (|q| |p|)_  where θ is the angle between them.
+The cosine similarity between two word vectors is calculated as the dot product of the two vectors divided by the product of their magnitudes. This produces a score ranging from -1 (completely dissimilar) to 1 (completely similar). In our case, we would like to optimize the relevance between a product embedding, _p_ and a query embedding, _q_.  The formula for calculating cosine similarity is _cos(θ) = (p . q)/(|q||p|)_  where θ is the angle between them.
 
 We also need to check whether computed similarity for a batch of examples is whether correct or incorrect. Let's continue with the following assumption: _Exact_ and _Substitute_ will be marked as relevant `1` and the rest (_complement_ and _irrelevant_) will be marked as irrelevant `-1` . 
 
