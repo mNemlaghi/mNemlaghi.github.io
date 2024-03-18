@@ -3,7 +3,7 @@
 In [introduction](https://mnemlaghi.github.io/cloud-embeddings/), we gathered some historical perspective and highlighted the importance of word embeddings in our current era. [In part one](https://mnemlaghi.github.io/cloud-embeddings/part-one-evaluate) we selected and evaluated some embeddings.
 
 This part is more destined to readers who are already familiarized with modern language model fine-tuning; therefore, if you want to deploy your application with state-of-the-art embedding without fine-tuning it, you can directly skip it and go directly to the next part.
-Now we'll focus on how we can fine-tune it in a modern and cost effective manner with a single GPU on SageMaker, with LoRA (low-rank adapters). First, let's get practical by fetching a real-world dataset and a real-world measurement. Fasten your seatbelt, let's go !
+Now we'll focus on how we can fine-tune it in a modern and cost effective manner with a single GPU on SageMaker, with LoRA (low-rank adapters). First, let's get practical by fetching a real-world dataset and a real-world measurement. Fasten your seatbelt, let's go!
 
 
 ## The business challenge
@@ -24,15 +24,14 @@ It also contains other fields that are beyond the scope of this blog.
 
 Numerous resources can be found  on cosine similarity (look at [Google scholar results !](https://scholar.google.com/scholar?hl=en&as_sdt=0%2C5&q=cosine+similarity+embeddings&btnG=)). Nevertheless, let's explain it briefly. It refers to the measure of similarity between two vectors in a high-dimensional space. Remember, in word embeddings, words are represented as vectors in a high-dimensional space such that similar words are mapped to nearby points in that space. 
 
-The cosine similarity between two word vectors is calculated as the dot product of the two vectors divided by the product of their magnitudes. This produces a score ranging from -1 (completely dissimilar) to 1 (completely similar).
+The cosine similarity between two word vectors is calculated as the dot product of the two vectors divided by the product of their magnitudes. This produces a score ranging from -1 (completely dissimilar) to 1 (completely similar). In our case, we would like to optimize the relevance between a product embedding, _p_ and a query embedding, _q_.  The formula for calculating cosine similarity is _cos(θ) = (p ⋅ q) / (|q| |p|)_  where θ is the angle between them.
 
+We also need to check whether computed similarity for a batch of examples is whether correct or incorrect. Let's continue with the following assumption: _Exact_ and _Substitute_ will be marked as relevant `1` and the rest (_complement_ and _irrelevant_) will be marked as irrelevant `-1` . 
 
-In our case, we would like to optimize the relevance between a product embedding, _p_ and a query embedding, _q_.  The formula for calculating cosine similarity is _cos(θ) = (p ⋅ q) / (|q| |p|)_  where θ is the angle between them.
+The loss will then be computed as follows:
 
- We also need to check whether computed similarity for a batch of examples is whether correct or incorrect. Let's continue with the following assumption: _Exact_ and _Substitute_ will be marked as relevant `1` and the rest will be marked as irrelevant `-1` . The loss will be computed as follows:
-
-*  $1 - cos(p,q)$ if label is _E_ or _S_
-*  $max(cos(p,q), \epsilon)$ otherwise, where $\epsilon$ is a very small number. 
+*  _1 - cos(p,q)_ if label is _E_ or _S_
+*  _max(cos(p,q), epsilon)_ otherwise, where _epsilon_ is a very small number. 
 
 Last word on cosine similarity:  this [Netflix paper](https://arxiv.org/abs/2403.05440), dating from March 2024, arguably claims that blindly relying on cosine similarity could have side effects, and advice data standardization.
 
