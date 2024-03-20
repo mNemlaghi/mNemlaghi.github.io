@@ -7,13 +7,15 @@ Retrieval-Augmented Generation (RAG) is a framework that combines large language
 
 ## The Basics of RAG
 
+
 At its core, a naive RAG system has the following components:
 
 1. A query `q` from the user.
-2. A collection of `N` document chunks $(d_1, d_2, ..., d_N)$ .
+2. A collection of `N` document chunks `(d1, d2, ..., dN)`.
 3. Two embedding systems:
     - An online system to embed the user query `q` into an embedding `Eq`.
     - An offline system to store embeddings `(E1, E2, ..., EN)` for the document chunks.
+    - it is worth noting that RAG
 4. A similarity calculation (e.g., cosine similarity) between the query embedding `Eq` and each document embedding `(E1, E2, ..., EN)`.
 5. A ranking system to retrieve the top `K` most relevant document chunks based on the similarity scores.
 
@@ -29,13 +31,15 @@ To overcome these challenges, modern vector databases employ indexing mechanisms
 
 ## Knowledge Bases for Amazon Bedrock
 
-From the [AWS website](https://aws.amazon.com/bedrock/knowledge-bases/) :
+Let's check it from the [AWS website](https://aws.amazon.com/bedrock/knowledge-bases/) :
 
 > With Knowledge Bases for Amazon Bedrock, you can give FMs and agents contextual information from your company’s private data sources for Retrieval Augmented Generation (RAG) to deliver more relevant, accurate, and customized responses.
 
+Said otherwise, it is an almost ready to go version of a RAG system!
+
 ### What do I need to create Knowledge Base?
 
-The bare minimum
+Here is the bare minimum
 * Data sources on S3
 * A selected embedding model on Bedrock
 * A vectorDB (the _quick create_ option will create an OpenSearch Serverless collection)
@@ -48,7 +52,7 @@ Here is a quick way to create a knowledge base in AWS:
 
 _Et voilà !_
 
-### How ro query it ?
+### How to query it ?
 
 Then, you can query your RAG system as any other AWS service, with `boto3`in Python !
 
@@ -146,29 +150,37 @@ The trade-off between QPS and Recall is often visualized using plots like the on
 
 
 ![QPS vs. Recall Trade-off](image-3.png)
-By analyzing such trade-off plots, you can select the indexing mechanism that aligns best with your specific requirements for speed and accuracy.
 
-#### Additional Considerations
 
-Beyond the indexing mechanism, there are other factors that can impact the overall performance of your RAG system:
+Beyond the indexing mechanism, you can also use - **embedding caching**: caching embeddings for frequently accessed documents or frequently asked questions can significantly reduce computation overhead.
 
-- **Embedding Caching**: Caching embeddings for frequently accessed documents can significantly reduce computation overhead and improve latency.
-- **Batch Processing**: Processing queries in batches rather than individually can amortize overhead costs and improve throughput.
-- **Distributed Architectures**: For large-scale deployments, consider distributing the indexing and retrieval operations across multiple nodes or clusters to achieve higher scalability and parallelism.
-- **Integration with AWS Services**: If deploying on AWS, leverage services like Lambda, SageMaker, or Elastic Kubernetes Service (EKS) to optimize resource utilization and take advantage of auto-scaling capabilities.
 
-By carefully considering these performance aspects and benchmarking different configurations, you can build a highly efficient and scalable RAG system tailored to your specific requirements.
+### Advanced RAG Techniques
 
-## Advanced RAG Techniques
+While the core RAG framework is powerful, researchers have developed advanced techniques to further improve performance and accuracy. Two notable approaches are Query Rewriting and Hypothetical Document Embeddings (HyDE).
 
-While the core RAG framework is powerful, researchers have developed advanced techniques to further improve performance:
+#### Query Rewriting
+Query rewriting aims to enhance retrieval performance by reformulating the input query before passing it to the retrieval system. A trained rewriter model can rephrase the query to better align with the document collection, maximizing the chances of retrieving relevant information.
 
-### Query Rewriting
+The rewriter model is typically trained on a dataset of query-document pairs, learning to transform queries into forms that improve retrieval accuracy. During inference, the rewritten query is encoded and used for similarity search against the document embeddings.
 
-Rewriting the query before retrieval can significantly enhance efficiency. A trained rewriter model can be applied to the input query to maximize retrieval performance.
+#### Hypothetical Document Embeddings (HyDE)
+The HyDE approach generates a "hypothetical document" based on the initial query using a language model. This hypothetical document acts as a proxy for the desired information and is encoded into an embedding by a "contriever" model trained via contrastive learning.
 
-### Hypothetical Document Embeddings (HyDE)
+The contriever model learns to map relevant document-query pairs to similar embeddings while pushing irrelevant pairs apart in the embedding space. During retrieval, the hypothetical document embedding is used to find the nearest neighbors from the document collection.
 
-The HyDE approach generates a "hypothetical document" based on the initial query using a language model. This hypothetical document is then encoded into an embedding by a "contriever" model trained via contrastive learning on relevant and irrelevant examples. HyDE has shown comparable results to fine-tuned models.
+HyDE has shown comparable or better performance than fine-tuned models while being more efficient and requiring less task-specific data.
 
-By carefully selecting the appropriate vector database and leveraging advanced techniques, you can build a highly effective and scalable RAG system tailored to your specific requirements.
+Both Query Rewriting and HyDE have demonstrated promising results in improving the accuracy and efficiency of RAG systems. However, they may introduce additional complexity and computational overhead, so the trade-offs should be carefully evaluated based on the specific requirements of your use case.
+
+## Recap
+
+This blog post explored the world of Retrieval-Augmented Generation (RAG) systems and the critical role of vector databases in storing and retrieving document embeddings efficiently. We discussed various indexing mechanisms like Flat, IVF-flat, HNSW, and PQ, each offering trade-offs between speed, accuracy, and memory usage.
+
+We then focused on vector database options within AWS, comparing services like PostgreSQL with pgvector, OpenSearch, DocumentDB, Redis, and Pinecone in terms of indexing support, dimension limits, and Bedrock KB integration.
+
+Performance considerations were highlighted, emphasizing the importance of understanding the latency, accuracy, and memory trade-offs for each indexing technique. We introduced benchmarking resources and visualized the QPS vs. Recall trade-off.
+
+Finally, we touched upon advanced RAG techniques like Query Rewriting and Hypothetical Document Embeddings (HyDE), which can potentially enhance performance and accuracy, albeit with increased complexity.
+
+As RAG systems continue to evolve, efficient vector databases and indexing mechanisms will play a crucial role in enabling language models to access and incorporate relevant information accurately.
