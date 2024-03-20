@@ -178,5 +178,5 @@ s3://{YOUR_DEFAULT_BUCKET}/{YOUR_TRAINING_JOB_NAME}/output/model.tar.gz
 ## Recap and what's next
 
 In this post, we chose a pre-trained embedding model amongst the best ones, and we delved into modern fine-tuning with parameter-efficient tuning, LoRA and SageMaker training.
-Next, we'll see how we'll deploy in a cost effective - and repeatable - manner an embedding system with SageMaker Endpoint and CDK!
+Next, we'll see how we'll [deploy in a cost effective - and repeatable - manner an embedding system with Bedrock (or SageMaker Endpoint) and CDK](https://mnemlaghi.github.io/cloud-embeddings/part-three-deploy)!
 

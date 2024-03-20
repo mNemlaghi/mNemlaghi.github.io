@@ -335,3 +335,5 @@ There was a lot to unfold out there!
 👉🏽 We discovered MTEB, new standard for evaluating text embeddings.
 
 👉🏽 We  selected two embeddings: on one hand, Cohere for its practicity and performance, and, on the other hand,  BGE General Embedding for its relative compacity and top performance.
+
+Next, we'll talk about [LoRA fine-tuning for embeddings](https://mnemlaghi.github.io/cloud-embeddings/part-two-finetune). If you want to skip it, you can directly jump to [part 3](https://mnemlaghi.github.io/cloud-embeddings/part-three-deploy), dedicated on repeatable embeddings deployment

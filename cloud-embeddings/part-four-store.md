@@ -1,3 +1,4 @@
+#### _The Cloud Embedding Series_
 # Preparing Your Documents for RAG: VectorDB Options in AWS
 
 The end of our journey will be  focusing on _storing_ and querying the embeddings and will focus on RAG systems.
