@@ -112,9 +112,6 @@ When selecting a vector database for your RAG system, consider the following fac
 - **Embedding dimensions**: Higher embedding dimensions may necessitate a vector database with a larger dimension limit.
 - **Integration with Bedrock Knowledge Base**: If you plan to use Bedrock KB, choose a vector database that supports seamless integration, such as Aurora, OpenSearch  or Pinecone.
 
-### Performance considerations.
-
-Here's how the internal resource on performance considerations could be incorporated into the blog post, along with some additional context and recommendations:
 
 ## Performance Considerations for RAG Systems
 
