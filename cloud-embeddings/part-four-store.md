@@ -173,12 +173,16 @@ Both Query Rewriting and HyDE have demonstrated promising results in improving t
 
 ## Recap
 
-This blog post explored the world of Retrieval-Augmented Generation (RAG) systems and the critical role of vector databases in storing and retrieving document embeddings efficiently. We discussed various indexing mechanisms like Flat, IVF-flat, HNSW, and PQ, each offering trade-offs between speed, accuracy, and memory usage.
+👉🏽 For this "store" part, the world of Retrieval-Augmented Generation (RAG) systems and the critical role of vector databases in storing and retrieving document embeddings efficiently. 
 
-We then focused on vector database options within AWS, comparing services like PostgreSQL with pgvector, OpenSearch, DocumentDB, Redis, and Pinecone in terms of indexing support, dimension limits, and Bedrock KB integration.
+👉🏽 We made a quick introduction on how to create RAG systems with Knowledge Bases for Bedrock 
 
-Performance considerations were highlighted, emphasizing the importance of understanding the latency, accuracy, and memory trade-offs for each indexing technique. We introduced benchmarking resources and visualized the QPS vs. Recall trade-off.
+👉🏽  We discussed various indexing mechanisms like Flat, IVF-flat, HNSW, and PQ, each offering trade-offs between speed, accuracy, and memory usage.
 
-Finally, we touched upon advanced RAG techniques like Query Rewriting and Hypothetical Document Embeddings (HyDE), which can potentially enhance performance and accuracy, albeit with increased complexity.
+👉🏽 We then focused on vector database options within AWS, comparing services like Aurora with PostgreSQL , OpenSearch, DocumentDB, Redis, and Pinecone in terms of indexing support, dimension limits, and Bedrock KB integration.
 
-As RAG systems continue to evolve, efficient vector databases and indexing mechanisms will play a crucial role in enabling language models to access and incorporate relevant information accurately.
+👉🏽 Performance considerations were highlighted, emphasizing the importance of understanding the latency, accuracy, and memory trade-offs for each indexing technique. We introduced benchmarking resources and visualized the QPS vs. Recall trade-off.
+
+👉🏽 Finally, we touched upon advanced RAG techniques like Query Rewriting and Hypothetical Document Embeddings (HyDE), which can potentially enhance performance and accuracy, albeit with increased complexity.
+
+👉🏽 As RAG systems continue to evolve, efficient vector databases and indexing mechanisms will play a crucial role in enabling language models to access and incorporate relevant information accurately.

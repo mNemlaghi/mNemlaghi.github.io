@@ -1,3 +1,4 @@
+#### _The Cloud Embedding Series_
 # Repeatable and Serverless embedding endpoint deployment with SageMaker, Bedrock and CDK
 
 
@@ -320,14 +321,14 @@ cfn_endpoint = sm_cfn.CfnEndpoint(self, "MyCfnEndpoint",
 
 This post explored deploying a repeatable and serverless embedding endpoint leveraging SageMaker, AWS CDK, and Bedrock. Key points:
 
-🚀 Amazon Bedrock: Get started quickly with self-managed, pre-trained embedding models. No infrastructure needed.
+👉🏽 Amazon Bedrock: Get started quickly with self-managed, pre-trained embedding models. No infrastructure needed.
 
-⚡ SageMaker Jumpstart: Automate deployment of pre-trained models using AWS CDK.  
+👉🏽 SageMaker Jumpstart: Automate deployment of pre-trained models using AWS CDK.  
 
-🛠️ The CDK Journey: Build and deploy custom SageMaker models, including optimizing container size by evaluating different AWS Deep Learning Containers, preparing model artifacts, creating S3 buckets, and leveraging Lambda and AWS CDK Custom Resources.
+👉🏽 The CDK Journey: Build and deploy custom SageMaker models, including optimizing container size by evaluating different AWS Deep Learning Containers, preparing model artifacts, creating S3 buckets, and leveraging Lambda and AWS CDK Custom Resources.
 
-🌐 Serverless Inference: Configure and create serverless endpoints using memory size and concurrent invocations.
+👉🏽 Serverless Inference: Configure and create serverless endpoints using memory size and concurrent invocations.
 
-📡 API Gateway (Optional): Expose deployed endpoints via API Gateway and Lambda functions to invoke Bedrock/SageMaker runtime clients.
+👉🏽 API Gateway (Optional): Expose deployed endpoints via API Gateway and Lambda functions to invoke Bedrock/SageMaker runtime clients.
 
 By following this approach and carefully selecting lightweight containers, you can deploy state-of-the-art embeddings in a repeatable, serverless, and cost-effective manner, focusing on empowering your technology for machine learning. Next, we'll [store and query embeddings](https://mnemlaghi.github.io/cloud-embeddings/part-four-store), thanks to Bedrock Knowledge Bases, and we'll explore various vector DB selection options.
