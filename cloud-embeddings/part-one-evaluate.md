@@ -1,3 +1,4 @@
+#### _The Cloud Embedding Series_
 # Selecting and evaluating embeddings with  BedRock, HuggingFace, SageMaker and MTEB
 
 In [introduction](https://mnemlaghi.github.io/cloud-embeddings/), we gathered some historical perspective and highlighted the importance of word embeddings in our current era. Now we're going to select and find a framework to evaluate them! Beforehand, let's make a quick detour with pre-trained embeddings.

@@ -319,7 +319,7 @@ cfn_endpoint = sm_cfn.CfnEndpoint(self, "MyCfnEndpoint",
 
 ## Recap
 
-This post explored deploying a repeatable and serverless embedding endpoint leveraging SageMaker, AWS CDK, and Bedrock. Key points:
+This post explored deploying a repeatable and serverless embedding endpoint leveraging Bedrock, SageMaker, AWS CDK, and Bedrock. Key points:
 
 👉🏽 Amazon Bedrock: Get started quickly with self-managed, pre-trained embedding models. No infrastructure needed.
 
@@ -331,4 +331,4 @@ This post explored deploying a repeatable and serverless embedding endpoint leve
 
 👉🏽 API Gateway (Optional): Expose deployed endpoints via API Gateway and Lambda functions to invoke Bedrock/SageMaker runtime clients.
 
-By following this approach and carefully selecting lightweight containers, you can deploy state-of-the-art embeddings in a repeatable, serverless, and cost-effective manner, focusing on empowering your technology for machine learning. Next, we'll [store and query embeddings](https://mnemlaghi.github.io/cloud-embeddings/part-four-store), thanks to Bedrock Knowledge Bases, and we'll explore various vector DB selection options.
+By following this approach and carefully selecting lightweight containers, you can deploy state-of-the-art embeddings in a repeatable, serverless, and cost-effective manner, focusing on empowering your technology for machine learning. Next, we'll [store and query embeddings](https://mnemlaghi.github.io/cloud-embeddings/part-four-store), thanks to Bedrock Knowledge Bases, and we'll explore various vector DB selection options!

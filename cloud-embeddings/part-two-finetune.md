@@ -1,3 +1,4 @@
+#### _The Cloud Embedding Series_
 # LoRA fine-tuning a pre-trained embedding with SageMaker and Hugging Face
 
 In [introduction](https://mnemlaghi.github.io/cloud-embeddings/), we gathered some historical perspective and highlighted the importance of word embeddings in our current era. [In part one](https://mnemlaghi.github.io/cloud-embeddings/part-one-evaluate) we selected and evaluated some embeddings.
