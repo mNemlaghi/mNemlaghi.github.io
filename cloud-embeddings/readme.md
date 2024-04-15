@@ -49,7 +49,7 @@ While parts are aimed at being loosely coupled, here's a humble suggestion of re
 * Part 2 (optional): [Fine-tune a state-of-the-art embedding model](https://mnemlaghi.github.io/cloud-embeddings/part-two-finetune)
 * Part 3: [deploying embedding systems with SageMaker, Bedrock and CDK](https://mnemlaghi.github.io/cloud-embeddings/part-three-deploy)
 * Part 4: [storing embeddings and creating a retriever with Bedrock Knowledge Bases](https://mnemlaghi.github.io/cloud-embeddings/part-four-store)
-
+* Quantizing embeddings: [Squeezing Embeddings: A Journey from classic to rotated ternary quantization](https://mnemlaghi.github.io/cloud-embeddings/quantization)
 
 ![Suggested reading order for this series](./reading-order.png)
 
