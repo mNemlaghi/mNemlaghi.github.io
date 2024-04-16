@@ -188,7 +188,7 @@ The evaluation of these novel techniques yielded promising results, with rotatio
 ![test1](allperfs.png)
 
 
-NB: technically speaking, I just assumed that, I just removed the
+NB: technically speaking, I just removed the left-hand rotation of the SVD by applying its inverse rotation matrix. Other options could be chosen as well.
 
 The rotated ternary quantization, in particular, emerged as a standout performer, striking an impressive balance between compression and performance preservation.
 
