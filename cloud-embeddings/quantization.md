@@ -235,16 +235,16 @@ Focusing on the lower end, now:
 
 | Task      | Embedding                     | Technique            |   dimension |   Size Multiplier |   Performance retention |
 |:----------|:-----------------------------|:---------------|------------:|------------------:|------------------------:|
-| Banking77 | amazon.titan-embed-image-v1  | binary         |         128 |                32 |                   85.03 |
-| Banking77 | amazon.titan-embed-image-v1  | rotated-binary |         128 |                32 |                   86.33 |
-| Banking77 | cohere.embed-english-v3      | binary         |         128 |                32 |                   86.91 |
-| Banking77 | cohere.embed-multilingual-v3 | binary         |         128 |                32 |                   87.07 |
-| Banking77 | amazon.titan-embed-text-v1   | rotated-binary |         192 |                32 |                   87.44 |
-| Banking77 | cohere.embed-english-v3      | rotated-binary |         128 |                32 |                   87.8  |
-| Banking77 | amazon.titan-embed-text-v1   | binary         |         192 |                32 |                   88.38 |
-| Banking77 | cohere.embed-multilingual-v3 | rotated-binary |         128 |                32 |                   88.7  |
-| STS-B     | amazon.titan-embed-image-v1  | binary         |         128 |                32 |                   90.24 |
-| STS-B     | cohere.embed-multilingual-v3 | rotated-binary |         128 |                32 |                   92.08 |
+| Banking77 | amazon.titan-embed-image-v1  | binary         |         128 |                32 |                   85.03% |
+| Banking77 | amazon.titan-embed-image-v1  | rotated-binary |         128 |                32 |                   86.33% |
+| Banking77 | cohere.embed-english-v3      | binary         |         128 |                32 |                   86.91% |
+| Banking77 | cohere.embed-multilingual-v3 | binary         |         128 |                32 |                   87.07% |
+| Banking77 | amazon.titan-embed-text-v1   | rotated-binary |         192 |                32 |                   87.44% |
+| Banking77 | cohere.embed-english-v3      | rotated-binary |         128 |                32 |                   87.8%  |
+| Banking77 | amazon.titan-embed-text-v1   | binary         |         192 |                32 |                   88.38% |
+| Banking77 | cohere.embed-multilingual-v3 | rotated-binary |         128 |                32 |                   88.7%  |
+| STS-B     | amazon.titan-embed-image-v1  | binary         |         128 |                32 |                   90.24% |
+| STS-B     | cohere.embed-multilingual-v3 | rotated-binary |         128 |                32 |                   92.08% |
 
 Unsurprisingly, binary has the lowest performance retention, but retention had a tendency to boost performance.
  
