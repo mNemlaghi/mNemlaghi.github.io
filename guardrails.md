@@ -4,7 +4,7 @@
 ## Introduction
 
 
-Today I would like to deep dive on a subject that is less explicitly technical than my previous posts (you can check my last note on [embeddings quantization](https://mnemlaghi.github.io/cloud-embeddings/quantization) for instance), albeit very important: adding a
+Today I would like to deep dive on a subject that is less explicitly technical than my previous posts ( if you'd like, you still can check my last note on [embeddings quantization](https://mnemlaghi.github.io/cloud-embeddings/quantization) for instance), albeit very important: adding a
 protection layer on LLMs.
 
 
@@ -21,9 +21,9 @@ Therefore, it is a matter of responsibility, for LLM builders to circumvent the 
 
 ### Amazon Bedrock guardrails: a managed solution for preventing harmful conversations
 
-Boosted by its [Bedrock](https://aws.amazon.com/bedrock/), its generative AI flagship service that allows easy LLM building, a couple of days ago, AWS announced general availability of [Guardrails for Amazon Bedrock](https://aws.amazon.com/about-aws/whats-new/2024/04/guardrails-amazon-bedrock-available-safety-privacy-controls/). Amongst other features, such as privacy control and prompt control defence (e.g. PII removal, prompt injection...), I wanted to focus on how Bedrock allow LLM builders to easily deny undesirable topics, in order to generate more responsible conversations or more focus on their core application. For instance, this [funny example](https://www.youtube.com/watch?v=Vhwc_ahFv6E) blocks any subject related to vampires 🧛 by creating a guardrail on AWS console. 
+Recently, AWS announced general availability of [Guardrails for Amazon Bedrock](https://aws.amazon.com/about-aws/whats-new/2024/04/guardrails-amazon-bedrock-available-safety-privacy-controls/), which aims to provide safety and control mechanisms for LLMs. Amongst other features, such as privacy control and prompt control defence (e.g. PII removal, prompt injection...). Users can also filter undesirable topics. For instance, this [illustrative example](https://www.youtube.com/watch?v=Vhwc_ahFv6E) blocks any subject related to vampires 🧛 by creating a guardrail on AWS console. 
 
-Let's use it to defend science.
+Let's use guardrails to defend science. Programmatically.
 
 ![Alt text](shieldedrobot.png)
 
@@ -101,7 +101,7 @@ The FM gave me the following:
 
 > "Despite alarmist claims, the fact that we still experience bitterly cold winter weather unequivocally disproves the myth of impending climate catastrophe, demonstrating that this issue is nothing more than an overhyped political agenda."
 
-On other trials, the FM has agreed to put a sentence but added a warning. Nevertheless, I didn't encounter an explicit refusal. Our FM champion needs help, let's quickly and simply equip it with a shield 🛡️.
+On other trials, the FM has agreed to put a sentence but added a warning. Nevertheless, I didn't encounter an explicit refusal. Going on with our metaphor: our FM champion needs help, let's quickly and simply equip it with a shield 🛡️.
 
 
 ### Step 2: creating a guardrail, to deny climate change skepticism.
@@ -164,20 +164,12 @@ Let's put both answers side by side:
 Cherry on top 🍒 : in addition to the text, client response also outputted another field `amazon-bedrock-guardrailAction`  with `INTERVENED`.  This enable tracking undesirable topic usage.
 
 
-## Responsible AI development
+## Conclusion: towards responsible AI development
 
-I hope this example highlighted the ease of use of adding guardrails for LLM in production.  Let's hope that shared guardrails can minimize misinformation and reduce harm.
+This example demonstrated one approach for implementing content controls in LLMs using Bedrock's guardrails feature. 
 
-As a final point, I would like to point on a discussion: I wouldn't be responsible if I had been talking about climate change and not mentioning the increasingly energy consumption during the lifecycle of a large language model, and impact on growing carbon footprint. 
+In conclusion, while guardrails can help mitigate AI-enabled misinformation, it's important to also consider the environmental impact of developing and deploying large language models. [Studies](https://arxiv.org/pdf/2311.16863.pdf) suggest text-only models have a lower carbon footprint compared to multimodal models that process images/video as well. Additionally, task-specific models tend to be less energy-intensive than multi-task models. Tools like [CodeCarbon](https://codecarbon.io/) can help measure and optimize the carbon emissions from AI workloads. As we strive to develop AI responsibly, minimizing energy usage and emissions must be a key consideration alongside mitigating societal harms like disinformation.
 
-- This [remarkable study](https://arxiv.org/pdf/2311.16863.pdf) arguably claims that single modality foundation models are less carbon-intensive than their multimodal counterparts (for instance, models parsing text and image). Also, task-specific models are less carbon intensive than their multi-task counterparts. Let's elaborate a bit: text classification tasks consumed in average 0.002kWh per 1000 inference whereas text generation consumed 0.047: simply not the same order of magnitude/ 
-
-![Carbon emissions](carbonstudy.png)
-Image source: [study](https://arxiv.org/pdf/2311.16863.pdf)
-
-
-
-- You can use [codecarbon](https://codecarbon.io/) to measure carbon footprint in your workload, either on-premises or in the cloud.
 
 ## Additional resources
 - [Amazon Bedrock documentation](https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html)
