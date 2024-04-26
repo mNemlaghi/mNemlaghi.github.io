@@ -166,8 +166,11 @@ Cherry on top 🍒 : in addition to the text, client response also outputted ano
 
 ## Conclusion: towards responsible AI development
 
-This example demonstrated one approach for implementing content controls in LLMs using Bedrock's guardrails feature. 
-
+This example demonstrated one approach for implementing content controls in LLMs using Bedrock's guardrails feature. A couple of remarks:
+- of course, guardrails are useful, but not silver-bullet. It will minimize risks, not anihiliate them completely
+- Guardrails come with other welcomed features, such as [sensitive information filters](https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails-components.html#guardrails-sensitive-filters) (PII type);
+- also, users might want to check [supported regions and models](https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails-supported.html).
+  
 In conclusion, while guardrails can help mitigate AI-enabled misinformation, it's important to also consider the environmental impact of developing and deploying large language models. [Studies](https://arxiv.org/pdf/2311.16863.pdf) suggest text-only models have a lower carbon footprint compared to multimodal models that process images/video as well. Additionally, task-specific models tend to be less energy-intensive than multi-task models. Tools like [CodeCarbon](https://codecarbon.io/) can help measure and optimize the carbon emissions from AI workloads. As we strive to develop AI responsibly, minimizing energy usage and emissions must be a key consideration alongside mitigating societal harms like disinformation.
 
 
