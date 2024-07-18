@@ -19,7 +19,7 @@ RAG has therefore become a proverbial framework in today's generative AI era. Bu
 We are going to focus on the "R" part of RAG -a.k.a retriever. Retrievers are in charge of forming the cheatsheet. From a cost perspective, the challenge of reducing distractors from retrievers will improve your RAG system, because cheatsheet will contain noise reduced data. It is a cost opportunity, as a better retriever system will likely feed a lesser amount of tokens to the LLM.
 
 
-## The solution: _adapt_ embeddings !
+## A solution: _adapt_ embeddings !
 
 This is where embeddings come into play. If you're not familiar, please stop reading this series and go [here](https://mnemlaghi.github.io/cloud-embeddings/) first. Now, off-the-shelf embeddings, either open-source or proprietary, have been commoditized. This time, we are going to adjust off-the-shelf embeddings with a technique called "adapters".  Adapters are learned processes that don't touch the embedding *per se*, but rather transform an embedding of dimension _d_ into another embedding of dimension _d_. They can be expressed as matrices. For instance, if we have a proprietary embedding _X_, then we just have to learn a matrix of dimension (d,d) that transform _X_ into another embedding Y, such as _Y=AX_.
 
