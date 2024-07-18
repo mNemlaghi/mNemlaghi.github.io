@@ -3,7 +3,7 @@
 
 ## Introduction: From Synthetic Data to Specialized Embeddings
 
-Welcome back! In our last adventure, we explored how to leverage LLMs to generate synthetic question-answer pairs from financial documents. Now, we're taking those pairs and using them to train embedding adapters that will supercharge our financial Q&A system. 
+Welcome back! In our last [adventure](part-one-data-generation), we explored how to leverage LLMs to generate synthetic question-answer pairs from financial documents. Now, we're taking those pairs and using them to train embedding adapters that will supercharge our financial Q&A system. 
 
 But what exactly is an adapter, and why is it so useful for our task? Let's dive in!
 
