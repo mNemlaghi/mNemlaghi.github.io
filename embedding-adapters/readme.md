@@ -43,8 +43,8 @@ Just with a important but slight detour, I've also written a companion repositor
 
 Let's see the menu for today, lots to uncover between practice and concepts. 
 
-1. _Hors d'oeuvre_ 🥗 is [Synthetic data generation](toto): we're going to go through a 10-K earnings document, in order to create accurate question/answers pairs. Rather a practical guide on how to generate data from an LLM and how to enforce JSON output
-2. Part 1 🥘 is our *plat de résistance*: we're going to [explain & design the adapters](toto). Conceptual but contains some practical tips.
+1. _Hors d'oeuvre_ 🥗 is [Synthetic data generation](part-one-data-generation): we're going to go through a 10-K earnings document, in order to create accurate question/answers pairs. Rather a practical guide on how to generate data from an LLM and how to enforce JSON output
+2. Part 1 🥘 is our *plat de résistance*: we're going to [explain & design the adapters](part-two-adapters-training). Conceptual but contains some practical tips.
 3. _Fromage_  🧀: in part 3(coming soon), we'll evaluate and interpret the performances during part 2. 
 4. And finally, the  _dessert_ 🍰:  we're going to perform a RAG system benchmark over an annual report to highlight, in practice, the added value of adapters (coming soon as well)
 
@@ -54,4 +54,4 @@ Let's see the menu for today, lots to uncover between practice and concepts.
 We're going to learn a lot in this journey! Who knew that understanding annual reports can be fun?
 
 
-__Notes__:The information provided in this series is for educational purposes only and should not be considered as financial or investment advice. Please read our full [Investment Disclaimer](diclaimer) for more details.
+__Notes__:The information provided in this series is for educational purposes only and should not be considered as financial or investment advice. Please read our full [Investment Disclaimer](disclaimer) for more details.

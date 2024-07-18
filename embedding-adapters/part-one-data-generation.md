@@ -217,7 +217,6 @@ Here is a non exhaustive list of limitations:
 
 And that's a wrap! We've successfully generated synthetic question-answer pairs using Anthropic's Claude Sonnet and Amazon Bedrock's Converse API. This is a first milestone in our journey to create a more precise financial Q&A system. By leveraging the power of LLMs, we've already solved a crucial business problem: labeling data.
 
-But, as we know, the journey doesn't end here. In the next post, we'll dive deeper into the world of embedding adapters and explore how we can use these synthetic question-answer pairs to train a more accurate and informative financial Q&A system. Stay tuned!
-
+But, as we know, the journey doesn't end here. In the [next post](part-two-adapters-training), we'll begin the main menu: the world of embedding adapters and how we can use these synthetic question-answer pairs to train a more accurate and informative financial Q&A system.
 
 __Notes__:The information provided in this series is for educational purposes only and should not be considered as financial or investment advice. Please read our full [Investment Disclaimer](disclaimer) for more details.
