@@ -85,9 +85,8 @@ User prompt, on the other hand, contains the specific input that the LLM should 
 > <text_chunk>
 > {chunk}
 > </text_chunk>
-
-Question needs to be specific.
-```
+>Question needs to be specific.
+> ```
 
 In Python, it goes with f-strings:
 
