@@ -195,4 +195,4 @@ By training these embedding adapters with triplet loss, we're creating a special
 In the next post, we'll put our newly trained adapter to the test, evaluating its performance in distinguishing relevant financial information from distractors.
 
 
-__Notes__:The information provided in this series is for educational purposes only and should not be considered as financial or investment advice. Please read our full [Investment Disclaimer](diclaimer) for more details.
+__Notes__:The information provided in this series is for educational purposes only and should not be considered as financial or investment advice. Please read our full [Investment Disclaimer](disclaimer) for more details.
