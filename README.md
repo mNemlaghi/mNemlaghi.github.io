@@ -22,6 +22,7 @@ Deeply interested in bringing ML insights to businesses and creating high-impact
 
 ## 📚 Recent contributions
 
+- [Embedding Adapters](https://mnemlaghi.github.io/embedding-adapters)
 - [LLM guardrails for Amazon Bedrock](https://mnemlaghi.github.io/guardrails)
 - [Cloud embeddings blog series](https://mnemlaghi.github.io/cloud-embeddings/)
 - [Cloud embedding repository](https://github.com/mNemlaghi/cloud-embeddings/tree/main)
